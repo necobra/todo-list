@@ -1,0 +1,54 @@
+[
+  {
+    "model": "todo_list.tag",
+    "pk": 1,
+    "fields": {
+      "name": "Health"
+    }
+  },
+  {
+    "model": "todo_list.tag",
+    "pk": 2,
+    "fields": {
+      "name": "Work"
+    }
+  },
+  {
+    "model": "todo_list.tag",
+    "pk": 3,
+    "fields": {
+      "name": "Important"
+    }
+  },
+  {
+    "model": "todo_list.task",
+    "pk": 1,
+    "fields": {
+      "content": "wash teath",
+      "is_done": true,
+      "datetime": "2024-07-24T13:13:13",
+      "tags": [1]
+    }
+  },
+  {
+    "model": "todo_list.task",
+    "pk": 2,
+    "fields": {
+      "content": "do yoga",
+      "is_done": false,
+      "datetime": "2024-07-24T13:13:13",
+      "tags": [1]
+    }
+  },
+  {
+    "model": "todo_list.task",
+    "pk": 3,
+    "fields": {
+      "content": "start project",
+      "is_done": false,
+      "datetime": "2024-07-24T13:13:13",
+      "deadline_datetime": "2024-07-30T13:13:13",
+      "tags": [2, 3]
+    }
+  }
+]
