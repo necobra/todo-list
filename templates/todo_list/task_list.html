@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="row">
+    <div class="col-10">
+      <h1>Task List</h1>
+    </div>
+    <div class="col-2">
+      <a class="btn btn-primary" href="{% url 'todo_list:task-create' %}">Add task</a>
+    </div>
+  </div>
+  <ul class="list-group">
+    {% for task in task_list %}
+      <li class="list-group-item">
+        <div class="container-fluid row">
+          <div class="col-10">
+            <div>
+              <strong>
+                {{ task.content|capfirst }}
+                {% if task.is_done %}
+                  <span class="text-success">Done</span>
+                {% else %}
+                  <span class="text-danger">Not done</span>
+                {% endif %}
+              </strong>
+            </div>
+            <div>
+              Created: {{ task.datetime }}
+              {% if task.deadline_datetime %}
+                <span class="text-warning">
+                  Dedline: {{ task.deadline_datetime }}
+                </span>
+              {% endif %}
+            </div>
+            <div>
+              <strong>
+              <span class="text-info">
+              Tags:
+                {% for tag in task.tags.all %}
+                  {{ tag }}
+                {% endfor %}
+                </span>
+                <a href="{% url 'todo_list:task-update' pk=task.id %}">Update</a>
+                <a href="{% url 'todo_list:task-delete' pk=task.id %}">Delete</a>
+              </strong>
+            </div>
+          </div>
+          <div class="col-2">
+            {% if task.is_done %}
+              <a class="btn btn-primary btn-info"
+                 href="{% url 'todo_list:task-change-status' pk=task.id %}">
+                Undo
+              </a>
+            {% else %}
+              <a class="btn btn-primary btn-success"
+                 href="{% url 'todo_list:task-change-status' pk=task.id %}">
+                Complete
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
