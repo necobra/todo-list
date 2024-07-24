@@ -7,6 +7,9 @@ class Task(models.Model):
     is_done = models.BooleanField(default=False)
     tags = models.ManyToManyField("Tag", related_name="tasks")
 
+    class Meta:
+        ordering = ["-datetime"]
+
     def __str__(self) -> str:
         return f"{self.content[:255]}"
 

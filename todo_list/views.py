@@ -5,9 +5,12 @@ from django.views import generic
 from todo_list import models
 from todo_list import forms
 
+
 class TaskListView(generic.ListView):
     model = models.Task
-    queryset = models.Task.objects.prefetch_related("tags")
+    queryset = (models.Task.objects
+                .prefetch_related("tags")
+                .order_by("-datetime"))
 
 
 class TaskCreateView(generic.CreateView):
